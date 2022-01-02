@@ -1,0 +1,16 @@
+version: 2
+
+models:
+    - name: stg_payments
+      description: one unique row per payment
+      columns:
+        - name: payment_id
+          description: primary key for stg_customers
+          tests:
+            - unique
+            - not_null 
+        - name: paymentmethod
+          description: "{{doc('payment_status')}}"
+          tests:
+            - accepted_values:
+               values: ['credit_card', 'coupon', 'gift_card', 'bank_transfer']
